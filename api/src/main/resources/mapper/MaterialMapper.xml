@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.blankingmanage.mapper.MaterialMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.blankingmanage.entity.Material">
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, name, type, stock_num, unit, description, purpose, address, location_image, remark, is_deleted, create_time, update_time
+    </sql>
+
+    <select id="list" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM sys_material
+        WHERE is_deleted = 0
+        ORDER BY id DESC
+    </select>
+    <update id="updateRealStock">
+        UPDATE sys_material
+        <set>
+            <if test="changeType == 1">
+                stock_num = stock_num + #{changeNum}
+            </if>
+            <if test="changeType == 2">
+                stock_num = stock_num - #{changeNum}
+            </if>
+        </set>
+        WHERE id = #{materialId}
+        <if test="changeType == 2">
+            AND stock_num >= #{changeNum}
+        </if>
+    </update>
+</mapper>
