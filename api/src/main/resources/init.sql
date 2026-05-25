@@ -180,6 +180,6 @@ delimiter ;
 -- 初始化管理员账号数据 (使用 INSERT IGNORE 防重复插入报错，修复 is_deleted=0)
 -- ----------------------------
 INSERT IGNORE INTO `sys_user` (`id`, `username`, `password`, `real_name`, `dept_id`, `avatar`, `status`, `create_time`, `is_deleted`) 
-VALUES (1, 'admin', 'admin', 'admin', NULL, NULL, 1, '2026-04-09 14:20:04', 0);
+VALUES (1, 'admin', 'admin', 'c83c5c7c45f035799381aa2a9d588d8cf8704163f054580e503fbf15bb69ec64', NULL, NULL, 1, '2026-04-09 14:20:04', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
